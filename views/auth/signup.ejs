@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign-UP</title>
+
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .body {
+            padding: 0;
+            margin: 0;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .form {
+            display: inline;
+        }
+
+        .login-form {
+            width: 20rem;
+            max-width: 90%;
+            margin: auto;
+            display: block;
+        }
+
+        .form-control {
+            margin: 1rem 0;
+        }
+
+        .form-control label,
+        .form-control input,
+        .form-control textarea {
+            display: block;
+            width: 100%;
+            margin-bottom: 0.25rem;
+        }
+
+        .form-control input,
+        .form-control textarea {
+            border: 1px solid #a1a1a1;
+            font: inherit;
+            border-radius: 2px;
+        }
+
+        .form-control input:focus,
+        .form-control textarea:focus {
+            outline-color: #00695c;
+        }
+
+        .form-control input.invalid,
+        .form-control textarea.invalid {
+            border-color: red;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.25rem 1rem;
+            text-decoration: none;
+            font: inherit;
+            border: 1px solid #00695c;
+            color: #00695c;
+            background: white;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .btn:hover,
+        .btn:active {
+            background-color: #00695c;
+            color: white;
+        }
+
+        .btn.danger {
+            color: red;
+            border-color: red;
+        }
+
+        .btn.danger:hover,
+        .btn.danger:active {
+            background: red;
+            color: white;
+        }
+    </style>
+
+
+    <script>
+
+        $(document).ready(function () {
+            $('#signupForm').validate({
+                rules: {
+                    name: {
+                        required: true,
+                        minlength: 2
+                    },
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    password: {
+                        required: true,
+                        minlength: 6
+                    }
+                },
+                messages: {
+                    name: {
+                        required: "Please enter your name",
+                        minleaght: "Your name must consist of at lenght 2 characters "
+                    },
+                    password: {
+                        required: "please provide a password",
+                        minleaght: "Your password must be a least 6 characters"
+                    }
+                }
+            })
+        })
+
+
+
+
+
+        // $(function () {
+        //     var $signUpForm = $('#fxForm');
+        //     if ($signUpForm.length) {
+        //         $signUpForm.validate({
+        //             rules: {
+        //                 name: {
+        //                     required: true
+        //                 }
+        //             },
+        //             messages: {
+        //                 name: {
+        //                     required: "Please enter your name",
+        //                     minleaght: "Your name must consist of at lenght 2 characters "
+        //                 }
+        //             }
+        //         })
+        //     }
+        // })
+
+    // $(document).ready(function () {
+    //     $('#namecheck').hide()
+    //     $('#emailcheck').hide()
+    //     $('#passcheck').hide()
+
+
+    //     var name_err = true
+    //     var email_err = true
+    //     var pass_err = true
+
+    //     $('#name').keyup(function () {
+    //         name_check()
+    //     })
+    //     function name_check() {
+    //         var user_val = $('#name').val();
+    //         // alert(user_val)
+    //         if (user_val.lenght == '') {
+    //             $('#namecheck').show()
+    //             $('#namecheck').html("** Please enter your name **")
+    //             $('#namecheck').focus()
+    //             $('#namecheck').css("color", "red")
+    //             name_err = false
+    //             return false
+    //         }
+    //     }
+    // })
+    </script>
+</head>
+
+<body>
+    <%if(Error && Error.length ){%>
+
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <%= Error[0] %>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+        </div>
+        <%}%>
+
+            <form class="login-form" id='signupForm' action="/auth/signup" method="POST">
+                <div class="form-control">
+                    <label for="name">Name </label>
+                    <input type="text" name="name" id="name" minlength="2" >
+                    <!-- <h5 id="namecheck"> </h5> -->
+                </div>
+
+                <div class="form-control">
+                    <label for="email">E-Mail</label>
+                    <input type="email" name="email" id="email" >
+                    <!-- <h5 id="emailcheck"> </h5> -->
+                </div>
+                <div class="form-control">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password">
+                    <!-- <h5 id="passcheck"> </h5> -->
+                </div>
+
+
+                <button class="btn" type="submit" value="submit">Signup</button>
+            </form>
+            <script>$("#signupForm").validate();</script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+                integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>

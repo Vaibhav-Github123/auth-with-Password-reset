@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log-in</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .body {
+            padding: 0;
+            margin: 0;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .form {
+            display: inline;
+        }
+
+        .login-form {
+            width: 20rem;
+            max-width: 90%;
+            margin: auto;
+            display: block;
+        }
+
+        .form-control {
+            margin: 1rem 0;
+        }
+
+        .form-control label,
+        .form-control input,
+        .form-control textarea {
+            display: block;
+            width: 100%;
+            margin-bottom: 0.25rem;
+        }
+
+        .form-control input,
+        .form-control textarea {
+            border: 1px solid #a1a1a1;
+            font: inherit;
+            border-radius: 2px;
+        }
+
+        .form-control input:focus,
+        .form-control textarea:focus {
+            outline-color: #00695c;
+        }
+
+        .form-control input.invalid,
+        .form-control textarea.invalid {
+            border-color: red;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.25rem 1rem;
+            text-decoration: none;
+            font: inherit;
+            border: 1px solid #00695c;
+            color: #00695c;
+            background: white;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .btn:hover,
+        .btn:active {
+            background-color: #00695c;
+            color: white;
+        }
+
+        .btn.danger {
+            color: red;
+            border-color: red;
+        }
+
+        .btn.danger:hover,
+        .btn.danger:active {
+            background: red;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <%if(messages && messages.length ){%>
+
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <%= messages[0] %>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+        </div>
+        <%}%>
+
+            <form class="login-form" action="/auth/new_pass" method="POST">
+
+                <div class="form-control">
+                    <label for="password">New Password</label>
+                    <input type="password" name="password" id="password">
+                </div>
+
+                <div class="form-control">
+                    <label for="confirmPassword">Re-enter Password</label>
+                    <input type="password" name="confirmPassword" id="confirmPassword">
+                </div>
+
+                <input type="hidden" name="userId" value="<%= userId %>">
+                <input type="hidden" name="passwordToken" value="<%= passwordToken %>">
+                <button class="btn" type="submit">Reset Password</button>
+            </form>
+</body>
+
+</html>
